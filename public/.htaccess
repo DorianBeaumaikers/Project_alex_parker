@@ -12,7 +12,7 @@ RewriteEngine on
 # ROUTES
 #--------------------------------------------------
 
-
+RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*\.html$ index.php?postID=$1 [L]
 
 # --------------------------------------------------
 RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]

@@ -15,7 +15,7 @@
             <!-- Blog Post Start -->
             <div class="col-md-12 blog-post row">
                 <div class="post-title">
-                    <a href="single.html">
+                    <a href="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>.html">
                         <h1>
                             <?php echo $post["title"]; ?>
                         </h1>
@@ -27,7 +27,7 @@
                 <p>
                     <?php echo Core\Functions\truncate($post["text"]); ?>
                 </p>
-                <a href="single.html" class="
+                <a href="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>.html" class="
                         button button-style button-anim
                         fa fa-long-arrow-right
                       "><span>Read More</span></a>

@@ -16,6 +16,8 @@
 
 <title><?php echo $title; ?></title>
 
+<base href="http://localhost/Scripts_Serveurs\Project_alex_parker\public\">
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="assets/images/favicon/apple-touch-icon.png" />
@@ -34,3 +36,5 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<script src="https://kit.fontawesome.com/013ba047e3.js" crossorigin="anonymous"></script>

@@ -9,3 +9,11 @@ function findAllWithLimit(\PDO $conn, int $limit = 10) {
     $rs->execute();
     return $rs->fetchAll(\PDO::FETCH_ASSOC);
 }
+
+function findOneByID(\PDO $conn, int $id){
+    $sql = "SELECT p.id, p.title, p.text, p.created_at, p.quote, p.image, c.name FROM posts p JOIN categories c ON p.category_id = c.id WHERE p.id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(":id", $id, \PDO::PARAM_INT);
+    $rs->execute();
+    return $rs->fetch(\PDO::FETCH_ASSOC);
+}
