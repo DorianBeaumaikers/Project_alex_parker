@@ -5,16 +5,19 @@
 <div class="col-md-3">
     <div class="about-fixed">
         <div class="my-pic">
-            <a href="index.html"><img src="images/pic/my-pic.png" alt="" /></a>
+            <a href="index.html"><img src="assets/images/pic/my-pic.png" alt="" /></a>
             <nav id="menu">
                 <ul class="menu-link">
                     <li><a href="index.html">My blog</a></li>
                 </ul>
             </nav>
             <ul class="menu-link">
-                <li><a href="index.html">Life style [12]</a></li>
-                <li><a href="index.html">Sport[23]</a></li>
-                <li><a href="index.html">Music[46]</a></li>
+                <?php 
+                    use App\Models\CategoriesModel;
+                    include_once "../app/models/categoriesModel.php";
+                    $categories = CategoriesModel\findAll($conn);
+                    include_once "../app/views/categories/_index.php";
+                ?>
             </ul>
         </div>
 
