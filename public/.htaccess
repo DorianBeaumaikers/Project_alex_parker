@@ -12,6 +12,8 @@ RewriteEngine on
 # ROUTES
 #--------------------------------------------------
 
+RewriteRule ^posts\/add\/insert.html$ index.php?insertPost [L]
+
 RewriteRule ^posts\/add\/form.html$ index.php?addPost [L]
 
 RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*.html$ index.php?postID=$1 [L]

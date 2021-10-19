@@ -17,3 +17,15 @@ function findOneByID(\PDO $conn, int $id){
     $rs->execute();
     return $rs->fetch(\PDO::FETCH_ASSOC);
 }
+
+function insertOne(\PDO $conn, array $data) {
+    $sql = "INSERT INTO posts (title, text, created_at, quote, image, category_id) VALUES (:title, :text, :currentTime, :quote, :image, :category_id);";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(":title", $data["title"], \PDO::PARAM_STR);
+    $rs->bindValue(":text", $data["text"], \PDO::PARAM_STR);
+    $rs->bindValue(":currentTime", date("Y-m-d"), \PDO::PARAM_STR);
+    $rs->bindValue(":quote", $data["quote"], \PDO::PARAM_STR);
+    $rs->bindValue(":image", $data["image"], \PDO::PARAM_STR);
+    $rs->bindValue(":category_id", $data["category_id"], \PDO::PARAM_INT);
+    $rs->execute();
+}

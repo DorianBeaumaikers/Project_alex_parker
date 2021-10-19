@@ -1,10 +1,28 @@
 <?php
 
 use App\Controllers\PostsController;
+use App\Models\PostsModel;
 
 if(isset($_GET["addPost"])){
     include_once "../app/controllers/postsController.php";
     PostsController\addPostAction($conn);
+}
+
+elseif(isset($_GET["insertPost"])) {
+    $data = [
+        "title" => $_POST["title"],
+        "text" => $_POST["text"],
+        "image" => Core\Functions\slugifyImagePath(basename($_FILES["image"]["name"])),
+        "quote" => $_POST["quote"],
+        "category_id" => (int)$_POST["category_id"]
+    ];
+
+    include_once "../app/models/postsModel.php";
+    PostsModel\insertOne($conn, $data);
+
+    Core\Functions\saveImage($_FILES["image"], $image_target_dir);
+
+    header("location: ../../");
 }
 
 elseif (isset($_GET["postID"])) { 

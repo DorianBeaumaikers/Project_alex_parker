@@ -10,3 +10,4 @@ define("TRUNCATE_LIMIT", 150);
 
 $content = "";
 $title = "Alex Parker - Blog";
+$image_target_dir = "assets/images/blog/";
