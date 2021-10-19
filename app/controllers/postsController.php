@@ -3,6 +3,7 @@
 namespace App\Controllers\PostsController;
 
 use App\Models\PostsModel;
+use App\Models\CategoriesModel;
 
 function indexAction(\PDO $conn) {
     include_once "../app/models/postsModel.php";
@@ -25,4 +26,17 @@ function showAction(\PDO $conn, int $id){
     ob_start();
         require_once "../app/views/posts/show.php";
     $content = \ob_get_clean();
+}
+
+function addPostAction(\PDO $conn) {
+    include_once "../app/models/categoriesModel.php";
+    $categories = CategoriesModel\findAll($conn);
+
+    GLOBAL $title;
+    $title = "Alex Parker - Add a post";
+
+    GLOBAL $content;
+    ob_start();
+        include_once "../app/views/posts/addPost.php";
+    $content = ob_get_clean();
 }

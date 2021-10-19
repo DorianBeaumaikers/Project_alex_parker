@@ -15,7 +15,7 @@
                 <?php 
                     use App\Models\CategoriesModel;
                     include_once "../app/models/categoriesModel.php";
-                    $categories = CategoriesModel\findAll($conn);
+                    $categories = CategoriesModel\findAllWithCount($conn);
                     include_once "../app/views/categories/_index.php";
                 ?>
             </ul>
