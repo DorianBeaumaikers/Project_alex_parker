@@ -49,3 +49,10 @@ function updateImageByID(\PDO $conn, array $data){
     $rs->bindValue(":image", $data["image"], \PDO::PARAM_STR);
     $rs->execute();
 }
+
+function deleteOneByID(\PDO $conn, int $id){
+    $sql = "DELETE FROM posts WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(":id", $id, \PDO::PARAM_INT);
+    $rs->execute();
+}

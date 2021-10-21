@@ -51,6 +51,13 @@ elseif(isset($_GET["updatePost"])) {
     header("location: ../../");
 }
 
+elseif(isset($_GET["deletePost"])) {
+    include_once "../app/models/postsModel.php";
+    PostsModel\deleteOneByID($conn, $_GET["postID"]);
+
+    header("location: ../../");
+}
+
 elseif (isset($_GET["postID"])) { 
     include_once "../app/controllers/postsController.php";
     PostsController\showAction($conn, $_GET["postID"]);
