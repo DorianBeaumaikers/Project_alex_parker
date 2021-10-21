@@ -20,7 +20,7 @@
                 <!-- Post Headline End -->
 
                 <!-- Form Start -->
-                <form action="posts/add/insert.html" method="post" enctype="multipart/form-data">
+                <form action="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>/edit/update.html" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" name="title" id="title" class="form-control" placeholder="Enter your title here" value="<?php echo $post["title"]; ?>" />

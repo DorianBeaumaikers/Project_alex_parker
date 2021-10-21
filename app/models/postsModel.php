@@ -29,3 +29,23 @@ function insertOne(\PDO $conn, array $data) {
     $rs->bindValue(":category_id", $data["category_id"], \PDO::PARAM_INT);
     $rs->execute();
 }
+
+
+function updateOneByID(\PDO $conn, array $data){
+    $sql = "UPDATE posts SET title = :title, text = :text, quote = :quote, category_id = :category_id WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(":id", $data["id"], \PDO::PARAM_STR);
+    $rs->bindValue(":title", $data["title"], \PDO::PARAM_STR);
+    $rs->bindValue(":text", $data["text"], \PDO::PARAM_STR);
+    $rs->bindValue(":quote", $data["quote"], \PDO::PARAM_STR);
+    $rs->bindValue(":category_id", $data["category_id"], \PDO::PARAM_INT);
+    $rs->execute();
+}
+
+function updateImageByID(\PDO $conn, array $data){
+    $sql = "UPDATE posts SET image = :image WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(":id", $data["id"], \PDO::PARAM_STR);
+    $rs->bindValue(":image", $data["image"], \PDO::PARAM_STR);
+    $rs->execute();
+}

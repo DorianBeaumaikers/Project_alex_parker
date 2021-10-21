@@ -18,6 +18,8 @@ RewriteRule ^posts\/add\/insert.html$ index.php?insertPost [L]
 
 RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*\/edit\/form.html$ index.php?editPost&postID=$1 [L]
 
+RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*\/edit\/update.html$ index.php?updatePost&postID=$1 [L]
+
 RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*.html$ index.php?postID=$1 [L]
 
 # --------------------------------------------------
