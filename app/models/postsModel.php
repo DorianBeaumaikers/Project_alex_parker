@@ -11,7 +11,7 @@ function findAllWithLimit(\PDO $conn, int $limit = 10) {
 }
 
 function findOneByID(\PDO $conn, int $id){
-    $sql = "SELECT p.id, p.title, p.text, p.created_at, p.quote, p.image, c.name FROM posts p JOIN categories c ON p.category_id = c.id WHERE p.id = :id;";
+    $sql = "SELECT p.id, p.title, p.text, p.created_at, p.quote, p.image, p.category_id, c.name FROM posts p JOIN categories c ON p.category_id = c.id WHERE p.id = :id;";
     $rs = $conn->prepare($sql);
     $rs->bindValue(":id", $id, \PDO::PARAM_INT);
     $rs->execute();

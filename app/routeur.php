@@ -25,6 +25,11 @@ elseif(isset($_GET["insertPost"])) {
     header("location: ../../");
 }
 
+elseif(isset($_GET["editPost"])) {
+    include_once "../app/controllers/postsController.php";
+    PostsController\editPostAction($conn, $_GET["postID"]);
+}
+
 elseif (isset($_GET["postID"])) { 
     include_once "../app/controllers/postsController.php";
     PostsController\showAction($conn, $_GET["postID"]);
