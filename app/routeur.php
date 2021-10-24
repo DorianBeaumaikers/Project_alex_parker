@@ -91,5 +91,5 @@ elseif (isset($_GET["postID"])) {
 
 else {
     include_once "../app/controllers/postsController.php";
-    PostsController\indexAction($conn);
+    PostsController\indexAction($conn, $_GET["page"]);
 }

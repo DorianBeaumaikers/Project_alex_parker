@@ -46,10 +46,20 @@
                 <!-- Post Buttons -->
                 <div>
                     <a href="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>/edit/form.html" type="button" class="btn btn-primary">Edit Post</a>
-                    <a href="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>/delete.html" type="button" class="btn btn-secondary" role="button">Delete Post</a>
+                    <a href="#" type="button" class="btn btn-secondary" id="deleteButton" role="button">Delete Post</a>
                 </div>
                 <!-- Post Buttons End -->
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("deleteButton").onclick = function(e){
+        e.preventDefault();
+        var bool = confirm("Do you really want to delete the post?");
+        if(bool){
+            window.location="posts/<?php echo $post["id"]; ?>/<?php echo Core\Functions\slugify($post["title"]); ?>/delete.html";
+        }
+    }
+</script>

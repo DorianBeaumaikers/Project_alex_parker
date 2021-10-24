@@ -28,6 +28,12 @@ RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*\/delete.html$ index.php?d
 
 RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9][a-z0-9\-]*.html$ index.php?postID=$1 [L]
 
+RewriteRule ^page\/([1-9][0-9]*) index.php?page=$1 [L]
+
+RewriteRule ^index.html$ index.php?page=1 [L]
+
+RewriteRule ^$ index.php?page=1 [L]
+
 # --------------------------------------------------
 RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
 RewriteRule ^(.*)$ index.php [L]

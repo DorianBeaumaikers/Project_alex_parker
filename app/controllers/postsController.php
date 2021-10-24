@@ -5,9 +5,23 @@ namespace App\Controllers\PostsController;
 use App\Models\PostsModel;
 use App\Models\CategoriesModel;
 
-function indexAction(\PDO $conn) {
+/**
+ * Route de base - Affiche la liste des postes
+ *
+ * @param \PDO $conn
+ * @param integer $page
+ * @return void
+ */
+function indexAction(\PDO $conn, int $page = 0) {
     include_once "../app/models/postsModel.php";
-    $posts = PostsModel\findAllWithLimit($conn, 10);
+
+    $postsCount = PostsModel\findPostsCount($conn);
+    $postsCount = (int)$postsCount["postsCount"];
+    $pages = ceil($postsCount/10);
+
+    $offset = ($page-1) * 10;
+
+    $posts = PostsModel\findAllWithLimit($conn, 10, $offset);
 
     GLOBAL $content;
     ob_start();
@@ -15,6 +29,13 @@ function indexAction(\PDO $conn) {
     $content = ob_get_clean();
 }
 
+/**
+ * Affiche un post selon l'id donnée
+ *
+ * @param \PDO $conn
+ * @param integer $id
+ * @return void
+ */
 function showAction(\PDO $conn, int $id){
     include_once "../app/models/postsModel.php";
     $post = PostsModel\findOneByID($conn, $id);
@@ -28,6 +49,12 @@ function showAction(\PDO $conn, int $id){
     $content = \ob_get_clean();
 }
 
+/**
+ * Affiche le formulaire d'ajout d'un post
+ *
+ * @param \PDO $conn
+ * @return void
+ */
 function addPostAction(\PDO $conn) {
     include_once "../app/models/categoriesModel.php";
     $categories = CategoriesModel\findAll($conn);
@@ -41,6 +68,13 @@ function addPostAction(\PDO $conn) {
     $content = ob_get_clean();
 }
 
+/**
+ * Affiche le formulaire d'édition d'un post
+ *
+ * @param \PDO $conn
+ * @param integer $id
+ * @return void
+ */
 function editPostAction(\PDO $conn, int $id) {
     include_once "../app/models/postsModel.php";
     $post = PostsModel\findOneByID($conn, $id);
