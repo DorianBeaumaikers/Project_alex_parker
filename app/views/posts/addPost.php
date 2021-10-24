@@ -32,6 +32,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlFile1"> Image</label>
                         <input type="file" class="form-control-file btn btn-primary" id="exampleFormControlFile1" name="image">
+                        <?php if(isset($_GET["error"])){echo "<p style='color:red'>The image should be a png or a jpg and should be smaller than 5mb</p>";} ?>
                     </div>
                     <div class="form-group">
                         <label for="text">Quote</label>

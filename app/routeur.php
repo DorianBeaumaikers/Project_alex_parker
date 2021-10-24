@@ -17,12 +17,20 @@ elseif(isset($_GET["insertPost"])) {
         "category_id" => (int)$_POST["category_id"]
     ];
 
-    include_once "../app/models/postsModel.php";
-    PostsModel\insertOne($conn, $data);
+    if(\Core\Functions\verifyImage($_FILES['image'])) {
+        include_once "../app/models/postsModel.php";
+        PostsModel\insertOne($conn, $data);
 
-    Core\Functions\saveImage($_FILES["image"], $image_target_dir);
+        Core\Functions\saveImage($_FILES["image"], $image_target_dir);
 
-    header("location: ../../");
+        header("location: ../../");
+        exit();
+    }
+
+    else {
+        header("location: form.html&error");
+        exit();
+    }
 }
 
 elseif(isset($_GET["editPost"])) {
@@ -40,22 +48,40 @@ elseif(isset($_GET["updatePost"])) {
         "category_id" => (int)$_POST["category_id"]
     ];
 
-    include_once "../app/models/postsModel.php";
-    PostsModel\updateOneByID($conn, $data);
 
     if(!($_FILES["image"]["name"] == "")){
-        PostsModel\updateImageByID($conn, $data);
-        Core\Functions\saveImage($_FILES["image"], $image_target_dir);
+        if(\Core\Functions\verifyImage($_FILES['image'])) {
+            include_once "../app/models/postsModel.php";
+            PostsModel\updateOneByID($conn, $data);
+    
+            PostsModel\updateImageByID($conn, $data);
+            Core\Functions\saveImage($_FILES["image"], $image_target_dir);
+    
+            header("location: ../../../../");
+            exit();
+        }
+    
+        else {
+            header("location: form.html&error");
+            exit();
+        }
     }
 
-    header("location: ../../");
+    else{
+        include_once "../app/models/postsModel.php";
+        PostsModel\updateOneByID($conn, $data);
+
+        header("location: ../../../../");
+        exit();
+    }
 }
 
 elseif(isset($_GET["deletePost"])) {
     include_once "../app/models/postsModel.php";
     PostsModel\deleteOneByID($conn, $_GET["postID"]);
 
-    header("location: ../../");
+    header("location: ../../../");
+    exit();
 }
 
 elseif (isset($_GET["postID"])) { 

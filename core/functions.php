@@ -27,6 +27,30 @@ function truncate(string $text, int $numbChar = TRUNCATE_LIMIT){
     }
 }
 
+function verifyImage(array $image){
+    $isCorrectImage = true;
+
+    $filepath = $image['tmp_name'];
+    $fileSize = filesize($filepath);
+    $fileinfo = finfo_open(FILEINFO_MIME_TYPE);
+    $filetype = finfo_file($fileinfo, $filepath);
+
+    $allowedTypes = [
+        'image/png' => 'png',
+        'image/jpeg' => 'jpg'
+    ];
+
+    if($fileSize === 0 || $fileSize > 5242880) {
+        $isCorrectImage = false;
+    }
+
+    if (!in_array($filetype, array_keys($allowedTypes))) {
+        $isCorrectImage = false;
+    }
+
+    return $isCorrectImage;
+}
+
 function saveImage(array $image, string $image_target_dir){
     $target_file = $image_target_dir . slugifyImagePath(basename($image["name"]));
     if (move_uploaded_file($image["tmp_name"], $target_file)) {
